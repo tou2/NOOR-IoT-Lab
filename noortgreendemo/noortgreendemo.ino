@@ -8,6 +8,7 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
+const int fan =  7;      // the number of the LED pin
  byte mac[] = { 0xD4, 0x28, 0xB2, 0xFF, 0xA0, 0xA1 }; // Must be unique on local network
  
 // replace with your channel's thingspeak API key, 
@@ -25,7 +26,7 @@ void setup() {
   dht.begin();
   
  
-
+pinMode(fan, OUTPUT);
 
   // Start Ethernet on Arduino
   startEthernet();
@@ -40,7 +41,19 @@ void loop() {
     Serial.println("Failed to read from DHT sensor!");
     return;
   }
- 
+
+///////////////FAN/////////////////////////////////////////
+  
+  if (t >25) {
+    //digitalWrite(7,HIGH);
+    Serial.println("7ar fash5"); //comment this line , debuging only
+  } else {
+    //digitalWrite(7,LOW);
+    Serial.println("kolo tamam"); // comment this line, debuggigg only
+  }
+  delay(500);
+  ////////////////////////////////////////////////////////////////////////
+  
   if (client.connect(thingSpeakAddress,80)) {  //   "184.106.153.149" or api.thingspeak.com
     String postStr = writeAPIKey;
            postStr +="&field1=";
@@ -70,7 +83,7 @@ void loop() {
    
   Serial.println("Waiting...");    
   // thingspeak needs minimum 15 sec delay between updates
-  delay(10);  
+  delay(10000);  
 }
 
 void startEthernet()
