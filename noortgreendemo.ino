@@ -1,9 +1,6 @@
-// www.arduinesp.com 
-//
-// Plot DTH11 data on thingspeak.com using an ESP8266 
-// April 11 2015
-// Author: Jeroen Beemster
-// Website: www.arduinesp.com
+
+// Plot DTH11 data on thingspeak.com 
+
  
  
 #include <DHT.h>
